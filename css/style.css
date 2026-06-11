@@ -55,6 +55,7 @@ button {
 button:hover {
     transform: scale(1.05);
 }
+
 .search-box {
     margin-top: 30px;
 }
@@ -70,4 +71,26 @@ button:hover {
 
 .search-box button {
     margin-left: 10px;
+}
+
+.categories {
+    padding: 50px 20px;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.category {
+    background: #161625;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.category:hover {
+    background: #9d4edd;
 }

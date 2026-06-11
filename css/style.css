@@ -55,3 +55,19 @@ button {
 button:hover {
     transform: scale(1.05);
 }
+.search-box {
+    margin-top: 30px;
+}
+
+.search-box input {
+    width: 350px;
+    max-width: 90%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.search-box button {
+    margin-left: 10px;
+}

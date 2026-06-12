@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉDIT MARKET PRO - Statistiques</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.statistics-page{
+    min-height:100vh;
+    padding:30px;
+}
+
+.statistics-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.stat-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:25px;
+}
+
+.stat-label{
+    color:#bdbdbd;
+    font-size:.95rem;
+    margin-bottom:10px;
+}
+
+.stat-value{
+    font-size:2rem;
+    font-weight:700;
+    color:#8b5cf6;
+}
+
+.section{
+    margin-top:40px;
+}
+
+.section-title{
+    font-size:1.4rem;
+    margin-bottom:20px;
+    font-weight:700;
+}
+
+.table-wrapper{
+    overflow-x:auto;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:15px;
+    text-align:left;
+}
+
+th{
+    background:rgba(255,255,255,.05);
+}
+
+tr:not(:last-child){
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+@media(max-width:768px){
+    .statistics-page{
+        padding:20px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="statistics-page">
+
+    <div class="statistics-title">
+        Statistiques ÉDIT MARKET PRO
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-label">Produits enregistrés</div>
+            <div id="totalProducts" class="stat-value">0</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Catégories</div>
+            <div id="totalCategories" class="stat-value">0</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Valeur catalogue</div>
+            <div id="catalogValue" class="stat-value">0 Ar</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Prix moyen</div>
+            <div id="averagePrice" class="stat-value">0 Ar</div>
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <div class="section-title">
+            Liste des produits
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Catégorie</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+
+                <tbody id="productsTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="statistics.js"></script>
+
+</body>
+</html>

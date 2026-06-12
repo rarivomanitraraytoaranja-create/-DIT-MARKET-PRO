@@ -6,54 +6,37 @@
 <title>Checkout</title>
 
 <link rel="stylesheet" href="css/style.css">
-
-<style>
-body{font-family:Arial;background:#f4f4f4;margin:0;padding:0}
-.container{max-width:800px;margin:40px auto;background:#fff;padding:20px}
-.item{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #ddd}
-.total{margin-top:20px;text-align:right;font-size:20px}
-button{width:100%;padding:15px;margin-top:20px;background:green;color:#fff;border:none;cursor:pointer}
-</style>
 </head>
 
 <body>
 
-<div class="container">
-    <h2>Checkout</h2>
+<h2>Checkout</h2>
 
-    <div id="items"></div>
+<div id="items"></div>
 
-    <div class="total">
-        Total : <span id="total">0 €</span>
-    </div>
+<p>Total: <span id="total"></span></p>
 
-    <button onclick="pay()">Payer</button>
-</div>
+<button onclick="pay()">Payer</button>
+
+<script src="js/analytics.js"></script>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("edit_cart")) || [];
 
 function load(){
-    let container = document.getElementById("items");
     let total = 0;
+    let container = document.getElementById("items");
 
-    container.innerHTML = "";
-
-    cart.forEach(p => {
-        total += p.price * p.quantity;
-
-        container.innerHTML += `
-            <div class="item">
-                <span>${p.name} x${p.quantity}</span>
-                <span>${p.price * p.quantity} €</span>
-            </div>
-        `;
+    cart.forEach(i => {
+        total += i.price * i.quantity;
+        container.innerHTML += `<p>${i.name} x${i.quantity}</p>`;
     });
 
     document.getElementById("total").innerText = total + " €";
 }
 
 function pay(){
+
     if(cart.length === 0){
         alert("Panier vide");
         return;
@@ -61,18 +44,22 @@ function pay(){
 
     let orders = JSON.parse(localStorage.getItem("edit_orders")) || [];
 
+    let total = cart.reduce((t,i)=>t+i.price*i.quantity,0);
+
     orders.push({
         id: "CMD-" + Date.now(),
         items: cart,
-        total: cart.reduce((t,i)=>t+i.price*i.quantity,0),
+        total: total,
         date: new Date(),
-        status: "pending"
+        status: "paid"
     });
 
     localStorage.setItem("edit_orders", JSON.stringify(orders));
     localStorage.removeItem("edit_cart");
 
-    alert("Commande validée");
+    trackPurchase();
+
+    alert("Paiement réussi");
     window.location.href = "index.html";
 }
 

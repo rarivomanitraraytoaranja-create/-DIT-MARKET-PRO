@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉDIT MARKET PRO - Analytics</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.analytics-page{
+    min-height:100vh;
+    padding:30px;
+}
+
+.page-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.analytics-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.analytics-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:25px;
+}
+
+.analytics-label{
+    color:#bdbdbd;
+    margin-bottom:10px;
+}
+
+.analytics-value{
+    font-size:2rem;
+    font-weight:700;
+    color:#8b5cf6;
+}
+
+.section{
+    margin-top:40px;
+}
+
+.section-title{
+    font-size:1.4rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.logs-container{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:20px;
+}
+
+.log-item{
+    padding:12px 0;
+}
+
+.log-item:not(:last-child){
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+@media(max-width:768px){
+
+    .analytics-page{
+        padding:20px;
+    }
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="analytics-page">
+
+    <div class="page-title">
+        Analytics
+    </div>
+
+    <div class="analytics-grid">
+
+        <div class="analytics-card">
+            <div class="analytics-label">Visites</div>
+            <div id="totalVisits" class="analytics-value">0</div>
+        </div>
+
+        <div class="analytics-card">
+            <div class="analytics-label">Vues Produits</div>
+            <div id="productViews" class="analytics-value">0</div>
+        </div>
+
+        <div class="analytics-card">
+            <div class="analytics-label">Téléchargements</div>
+            <div id="downloadsCount" class="analytics-value">0</div>
+        </div>
+
+        <div class="analytics-card">
+            <div class="analytics-label">Conversions</div>
+            <div id="conversionRate" class="analytics-value">0%</div>
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <div class="section-title">
+            Journal d'activité
+        </div>
+
+        <div id="logsContainer" class="logs-container"></div>
+
+    </div>
+
+</div>
+
+<script src="analytics.js"></script>
+
+</body>
+</html>

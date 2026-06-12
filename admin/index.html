@@ -1,1 +1,82 @@
-    margin: 0;     padding: 0;     box-sizing: border-box;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉDIT MARKET PRO - Admin</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+<header class="admin-header">
+
+    <h1 class="admin-title">
+        ÉDIT MARKET PRO
+    </h1>
+
+    <button class="admin-btn">
+        Ajouter un produit
+    </button>
+
+</header>
+
+<main class="admin-container">
+
+    <section class="stats-grid">
+
+        <div class="stat-card fade-up">
+            <div class="stat-title">Produits</div>
+            <div class="stat-value" id="total-products">0</div>
+        </div>
+
+        <div class="stat-card fade-up">
+            <div class="stat-title">Catégories</div>
+            <div class="stat-value" id="total-categories">0</div>
+        </div>
+
+        <div class="stat-card fade-up">
+            <div class="stat-title">Populaires</div>
+            <div class="stat-value" id="total-popular">0</div>
+        </div>
+
+        <div class="stat-card fade-up">
+            <div class="stat-title">Produits récents</div>
+            <div class="stat-value" id="recent-count">0</div>
+        </div>
+
+    </section>
+
+    <section class="products-section fade-in">
+
+        <h2>Liste des produits</h2>
+
+        <table class="products-table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Catégorie</th>
+                    <th>Prix</th>
+                    <th>Populaire</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="products-table-body">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

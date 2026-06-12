@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉDIT MARKET PRO - Messages</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.messages-page{
+    min-height:100vh;
+    padding:30px;
+}
+
+.page-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.messages-list{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.message-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:20px;
+}
+
+.message-header{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.message-name{
+    font-size:1.1rem;
+    font-weight:700;
+}
+
+.message-email{
+    opacity:.8;
+}
+
+.message-date{
+    color:#a78bfa;
+}
+
+.message-content{
+    line-height:1.7;
+    white-space:pre-wrap;
+}
+
+.empty-messages{
+    text-align:center;
+    padding:80px 20px;
+}
+
+@media(max-width:768px){
+
+    .messages-page{
+        padding:20px;
+    }
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="messages-page">
+
+    <div class="page-title">
+        Messages Clients
+    </div>
+
+    <div id="messagesList" class="messages-list"></div>
+
+</div>
+
+<script src="messages.js"></script>
+
+</body>
+</html>

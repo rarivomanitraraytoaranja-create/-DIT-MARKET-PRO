@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉDIT MARKET PRO - Paramètres</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.settings-page{
+    min-height:100vh;
+    padding:30px;
+}
+
+.page-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.settings-grid{
+    display:grid;
+    gap:20px;
+}
+
+.settings-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:25px;
+}
+
+.card-title{
+    font-size:1.2rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    background:#111827;
+    border:1px solid rgba(255,255,255,.1);
+    color:white;
+    padding:12px;
+    border-radius:12px;
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.save-btn{
+    border:none;
+    cursor:pointer;
+    padding:12px 20px;
+    border-radius:12px;
+    background:#7c3aed;
+    color:white;
+    font-weight:600;
+}
+
+.success-message{
+    margin-top:15px;
+    color:#22c55e;
+    display:none;
+}
+
+@media(max-width:768px){
+
+    .settings-page{
+        padding:20px;
+    }
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="settings-page">
+
+    <div class="page-title">
+        Paramètres du Site
+    </div>
+
+    <div class="settings-grid">
+
+        <div class="settings-card">
+
+            <div class="card-title">
+                Informations Générales
+            </div>
+
+            <div class="form-group">
+                <label>Nom du site</label>
+                <input type="text" id="siteName">
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="siteDescription"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Email de contact</label>
+                <input type="email" id="siteEmail">
+            </div>
+
+            <button id="saveSettings" class="save-btn">
+                Enregistrer
+            </button>
+
+            <div id="successMessage" class="success-message">
+                Paramètres enregistrés.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="settings.js"></script>
+
+</body>
+</html>

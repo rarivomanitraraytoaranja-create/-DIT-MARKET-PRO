@@ -18,7 +18,7 @@
 
 <button onclick="pay()">Payer</button>
 
-<script src="js/analytics.js"></script>
+<script src="js/download-security.js"></script>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("edit_cart")) || [];
@@ -46,21 +46,22 @@ function pay(){
 
     let total = cart.reduce((t,i)=>t+i.price*i.quantity,0);
 
-    orders.push({
+    let newOrder = {
         id: "CMD-" + Date.now(),
         items: cart,
         total: total,
         date: new Date(),
         status: "paid"
-    });
+    };
+
+    orders.push(newOrder);
 
     localStorage.setItem("edit_orders", JSON.stringify(orders));
     localStorage.removeItem("edit_cart");
 
-    trackPurchase();
+    registerPurchaseDevice(newOrder.id);
 
-    alert("Paiement réussi");
-    window.location.href = "index.html";
+    window.location.href = "download.html?id=" + newOrder.id;
 }
 
 document.addEventListener("DOMContentLoaded", load);

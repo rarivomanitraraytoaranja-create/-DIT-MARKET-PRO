@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body{font-family:Arial;background:#f4f4f4;margin:0;padding:0}
+.container{max-width:700px;margin:60px auto;background:#fff;padding:20px;text-align:center;border-radius:10px}
+button{padding:15px;width:100%;background:green;color:#fff;border:none;cursor:pointer;font-size:16px}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Votre téléchargement</h2>
+
+    <p id="status">Vérification...</p>
+
+    <button onclick="downloadFile()">Télécharger</button>
+
+</div>
+
+<script src="js/download-security.js"></script>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const orderId = urlParams.get("id");
+
+function checkAccess(){
+
+    if(!orderId){
+        document.getElementById("status").innerText = "Accès invalide ❌";
+        return;
+    }
+
+    let ok = canDownload(orderId);
+
+    if(!ok){
+        document.getElementById("status").innerText = "Accès refusé ❌";
+        return;
+    }
+
+    document.getElementById("status").innerText = "Accès autorisé ✔️";
+}
+
+function downloadFile(){
+
+    if(!orderId){
+        alert("Erreur");
+        return;
+    }
+
+    secureDownload(orderId);
+}
+
+document.addEventListener("DOMContentLoaded", checkAccess);
+</script>
+
+</body>
+</html>

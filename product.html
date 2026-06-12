@@ -3,41 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Produit - ÉDIT MARKET PRO</title>
 
 <link rel="stylesheet" href="css/style.css">
+
+<style>
+body{font-family:Arial;background:#f4f4f4;margin:0;padding:0}
+header{background:#111;color:#fff;padding:15px;text-align:center}
+.container{max-width:900px;margin:40px auto;background:#fff;padding:20px;border-radius:10px}
+img{width:100%;max-height:350px;object-fit:cover;border-radius:10px}
+.price{font-size:22px;margin:10px 0;color:green}
+button{width:100%;padding:15px;background:green;color:#fff;border:none;cursor:pointer;font-size:16px;border-radius:5px}
+button:hover{background:#1e7d32}
+</style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">ÉDIT MARKET PRO</div>
+    ÉDIT MARKET PRO
 </header>
 
-<section class="hero">
-<h1>Détails du Produit</h1>
-<p>Consultez les informations complètes du produit sélectionné.</p>
-</section>
+<div class="container">
 
-<section class="section">
+    <img src="assets/products/p1.jpg" id="product-image">
 
-<div class="card">
+    <h2 id="product-name">Produit exemple</h2>
 
-<h2 id="product-name">Nom du produit</h2>
+    <p id="product-description">
+        Description du produit ici.
+    </p>
 
-<p id="product-description">
-Description du produit.
-</p>
+    <div class="price" id="product-price">20 €</div>
 
-<div class="price" id="product-price">
-$0
-</div>
+    <button onclick="addToCart()">Ajouter au panier</button>
 
 </div>
 
-</section>
+<script>
+// ===============================
+// PRODUIT FIXE (MODIFIABLE PLUS TARD)
+// ===============================
+let product = {
+    id: "P1",
+    name: document.getElementById("product-name").innerText,
+    price: 20,
+    image: document.getElementById("product-image").src
+};
 
-<script src="js/product.js"></script>
+// ===============================
+// AJOUT AU PANIER
+// ===============================
+function addToCart(){
+
+    let cart = JSON.parse(localStorage.getItem("edit_cart")) || [];
+
+    let exist = cart.find(p => p.id === product.id);
+
+    if(exist){
+        exist.quantity += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem("edit_cart", JSON.stringify(cart));
+
+    alert("Produit ajouté au panier ✅");
+}
+</script>
 
 </body>
 </html>

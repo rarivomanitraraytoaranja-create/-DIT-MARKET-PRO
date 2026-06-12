@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉDIT MARKET PRO - Sauvegardes</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.backups-page{
+    min-height:100vh;
+    padding:30px;
+}
+
+.page-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.backup-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:25px;
+}
+
+.backup-actions{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.action-btn{
+    border:none;
+    cursor:pointer;
+    padding:12px 20px;
+    border-radius:12px;
+    font-weight:600;
+    color:white;
+    background:#7c3aed;
+}
+
+.backup-info{
+    margin-top:20px;
+    opacity:.8;
+}
+
+@media(max-width:768px){
+
+    .backups-page{
+        padding:20px;
+    }
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="backups-page">
+
+    <div class="page-title">
+        Sauvegardes
+    </div>
+
+    <div class="backup-card">
+
+        <p>
+            Exporter ou restaurer les données locales de ÉDIT MARKET PRO.
+        </p>
+
+        <div class="backup-actions">
+
+            <button
+                id="exportBackup"
+                class="action-btn"
+            >
+                Exporter
+            </button>
+
+            <input
+                type="file"
+                id="importBackup"
+                accept=".json"
+            >
+
+        </div>
+
+        <div
+            id="backupInfo"
+            class="backup-info"
+        ></div>
+
+    </div>
+
+</div>
+
+<script src="backups.js"></script>
+
+</body>
+</html>

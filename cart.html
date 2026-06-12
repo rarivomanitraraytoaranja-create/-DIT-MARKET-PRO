@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panier</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body{font-family:Arial;background:#f4f4f4;margin:0;padding:0}
+.container{max-width:800px;margin:40px auto;background:#fff;padding:20px}
+.item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid #ddd}
+.item input{width:60px}
+.total{margin-top:20px;text-align:right;font-size:20px}
+button{padding:10px 15px;margin-top:10px;cursor:pointer}
+.pay{width:100%;background:green;color:#fff;border:none;padding:15px;margin-top:20px}
+.remove{background:red;color:#fff;border:none}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Mon Panier</h2>
+
+    <div id="cart-items"></div>
+
+    <div class="total">
+        Total : <span id="total">0 €</span>
+    </div>
+
+    <button class="pay" onclick="goCheckout()">Passer au paiement</button>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("edit_cart")) || [];
+
+function loadCart(){
+    let container = document.getElementById("cart-items");
+    let total = 0;
+
+    container.innerHTML = "";
+
+    cart.forEach((p, index) => {
+        total += p.price * p.quantity;
+
+        container.innerHTML += `
+            <div class="item">
+                <span>${p.name}</span>
+
+                <input type="number" min="1" value="${p.quantity}"
+                onchange="updateQty(${index}, this.value)">
+
+                <span>${p.price * p.quantity} €</span>
+
+                <button class="remove" onclick="removeItem(${index})">X</button>
+            </div>
+        `;
+    });
+
+    document.getElementById("total").innerText = total + " €";
+}
+
+function updateQty(i, qty){
+    cart[i].quantity = parseInt(qty);
+    save();
+}
+
+function removeItem(i){
+    cart.splice(i,1);
+    save();
+}
+
+function save(){
+    localStorage.setItem("edit_cart", JSON.stringify(cart));
+    loadCart();
+}
+
+function goCheckout(){
+    if(cart.length === 0){
+        alert("Panier vide");
+        return;
+    }
+    window.location.href = "checkout.html";
+}
+
+document.addEventListener("DOMContentLoaded", loadCart);
+</script>
+
+</body>
+</html>

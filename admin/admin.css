@@ -1,104 +1,208 @@
-// ========================================
-// ÉDIT MARKET PRO - ADMIN.JS
-// ========================================
+/* ========================================
+   ÉDIT MARKET PRO - ADMIN/ADMIN.CSS
+======================================== */
 
-let adminProducts = [];
+.admin-page {
+    min-height: 100vh;
+}
 
-async function loadAdminProducts() {
+.admin-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
 
-    try {
+    background: rgba(15,15,18,0.95);
 
-        const response =
-            await fetch('../data/products.json');
+    backdrop-filter: blur(20px);
 
-        adminProducts =
-            await response.json();
+    border-right: 1px solid rgba(255,255,255,0.08);
 
-        updateStats();
+    padding: 25px;
 
-        renderProductsTable();
+    overflow-y: auto;
+}
 
-    } catch (error) {
+.admin-logo {
+    font-size: 24px;
+    font-weight: bold;
 
-        console.error(error);
+    color: #8b5cf6;
 
+    margin-bottom: 30px;
+}
+
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin-menu a {
+    text-decoration: none;
+
+    color: #ffffff;
+
+    padding: 12px 15px;
+
+    border-radius: 12px;
+
+    transition: 0.3s;
+}
+
+.admin-menu a:hover {
+    background: rgba(139,92,246,0.15);
+}
+
+.admin-content {
+    margin-left: 260px;
+
+    padding: 30px;
+}
+
+.admin-card {
+    background: rgba(255,255,255,0.05);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 20px;
+
+    padding: 20px;
+}
+
+.admin-grid {
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap: 20px;
+}
+
+.admin-section-title {
+    font-size: 22px;
+
+    margin-bottom: 20px;
+
+    color: #8b5cf6;
+}
+
+.admin-search {
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    background: rgba(255,255,255,0.05);
+
+    color: white;
+
+    outline: none;
+}
+
+.admin-search::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.admin-badge {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    background: rgba(139,92,246,0.15);
+
+    color: #8b5cf6;
+
+    font-size: 12px;
+}
+
+.admin-table-wrapper {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 14px;
+
+    text-align: left;
+}
+
+.admin-table th {
+    background: rgba(139,92,246,0.12);
+}
+
+.admin-table tr {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.admin-table tr:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+.admin-action-group {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.admin-btn-edit {
+    background: #8b5cf6;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 14px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.admin-btn-delete {
+    background: #ef4444;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 14px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+    .admin-sidebar {
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+    }
+
+    .admin-content {
+        margin-left: 0;
+
+        padding: 20px;
     }
 
 }
-
-function updateStats() {
-
-    const totalProducts =
-        adminProducts.length;
-
-    const categories =
-        [...new Set(
-            adminProducts.map(
-                product => product.category
-            )
-        )];
-
-    const popularProducts =
-        adminProducts.filter(
-            product => product.popular === true
-        );
-
-    document.getElementById(
-        'total-products'
-    ).textContent = totalProducts;
-
-    document.getElementById(
-        'total-categories'
-    ).textContent = categories.length;
-
-    document.getElementById(
-        'total-popular'
-    ).textContent = popularProducts.length;
-
-    document.getElementById(
-        'recent-count'
-    ).textContent =
-        Math.min(adminProducts.length, 8);
-
-}
-
-function renderProductsTable() {
-
-    const tableBody =
-        document.getElementById(
-            'products-table-body'
-        );
-
-    if (!tableBody) return;
-
-    tableBody.innerHTML = '';
-
-    adminProducts.forEach(product => {
-
-        const row =
-            document.createElement('tr');
-
-        row.innerHTML = `
-            <td>${product.id}</td>
-            <td>${product.name}</td>
-            <td>${product.category}</td>
-            <td>${product.price} Ar</td>
-            <td>
-                ${
-                    product.popular
-                    ? 'Oui'
-                    : 'Non'
-                }
-            </td>
-        `;
-
-        tableBody.appendChild(row);
-
-    });
-
-}
-
-document.addEventListener(
-    'DOMContentLoaded',
-    loadAdminProducts
-);

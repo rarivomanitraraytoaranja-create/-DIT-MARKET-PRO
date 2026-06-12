@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉDIT MARKET PRO - Paiements</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.payments-page{
+    min-height:100vh;
+    padding:30px;
+}
+
+.page-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.payments-container{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.payments-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.payments-table th,
+.payments-table td{
+    padding:16px;
+    text-align:left;
+}
+
+.payments-table th{
+    background:rgba(255,255,255,.05);
+}
+
+.payments-table tr:not(:last-child){
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.status{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:.85rem;
+    display:inline-block;
+}
+
+.success{
+    background:rgba(34,197,94,.2);
+}
+
+.pending{
+    background:rgba(245,158,11,.2);
+}
+
+.failed{
+    background:rgba(239,68,68,.2);
+}
+
+.empty-payments{
+    text-align:center;
+    padding:60px 20px;
+}
+
+@media(max-width:768px){
+
+    .payments-page{
+        padding:20px;
+    }
+
+    .payments-container{
+        overflow-x:auto;
+    }
+
+    .payments-table{
+        min-width:800px;
+    }
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="payments-page">
+
+    <div class="page-title">
+        Gestion des Paiements
+    </div>
+
+    <div class="payments-container">
+
+        <table class="payments-table">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Produit</th>
+                    <th>Montant</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody id="paymentsTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="payments.js"></script>
+
+</body>
+</html>

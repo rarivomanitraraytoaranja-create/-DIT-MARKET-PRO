@@ -1,1 +1,193 @@
-EFEFZERTETET
+/* ========================================
+   ÉDIT MARKET PRO - ADMIN.CSS
+   Interface d'administration
+   Violet + Noir + Glassmorphism
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f0f12;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+/* ==========================
+   HEADER ADMIN
+========================== */
+
+.admin-header {
+    width: 100%;
+    padding: 20px;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b5cf6;
+}
+
+/* ==========================
+   CONTAINER
+========================== */
+
+.admin-container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+/* ==========================
+   DASHBOARD STATS
+========================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-title {
+    font-size: 14px;
+    color: #bdbdbd;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #8b5cf6;
+}
+
+/* ==========================
+   TABLEAU PRODUITS
+========================== */
+
+.products-section {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.products-section h2 {
+    margin-bottom: 20px;
+}
+
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.products-table th {
+    text-align: left;
+    padding: 15px;
+    background: rgba(139,92,246,0.15);
+}
+
+.products-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.products-table tr:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+/* ==========================
+   BOUTONS
+========================== */
+
+.admin-btn {
+    border: none;
+    background: #8b5cf6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-btn:hover {
+    transform: scale(1.05);
+}
+
+.admin-btn-danger {
+    background: #ef4444;
+}
+
+.admin-btn-success {
+    background: #22c55e;
+}
+
+/* ==========================
+   FORMULAIRES
+========================== */
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-input,
+.admin-select,
+.admin-textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    outline: none;
+}
+
+.admin-textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 768px) {
+
+    .admin-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .products-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+}

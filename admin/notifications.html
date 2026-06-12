@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉDIT MARKET PRO - Notifications</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.notifications-page{
+    min-height:100vh;
+    padding:30px;
+}
+
+.page-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.notifications-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:25px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.form-group input,
+.form-group textarea{
+    background:#111827;
+    border:1px solid rgba(255,255,255,.1);
+    color:white;
+    border-radius:12px;
+    padding:12px;
+}
+
+.form-group textarea{
+    min-height:150px;
+    resize:vertical;
+}
+
+.send-btn{
+    background:#7c3aed;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:12px 20px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.notifications-history{
+    margin-top:30px;
+}
+
+.history-title{
+    font-size:1.2rem;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.notification-item{
+    background:rgba(255,255,255,.05);
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:10px;
+}
+
+.empty-notifications{
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:768px){
+
+    .notifications-page{
+        padding:20px;
+    }
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="notifications-page">
+
+    <div class="page-title">
+        Notifications
+    </div>
+
+    <div class="notifications-card">
+
+        <div class="form-group">
+            <label>Titre</label>
+            <input type="text" id="notificationTitle">
+        </div>
+
+        <div class="form-group">
+            <label>Message</label>
+            <textarea id="notificationMessage"></textarea>
+        </div>
+
+        <button
+            id="sendNotification"
+            class="send-btn"
+        >
+            Publier
+        </button>
+
+        <div class="notifications-history">
+
+            <div class="history-title">
+                Historique
+            </div>
+
+            <div id="notificationsList"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="notifications.js"></script>
+
+</body>
+</html>

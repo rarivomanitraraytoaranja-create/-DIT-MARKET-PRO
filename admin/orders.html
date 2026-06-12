@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉDIT MARKET PRO - Commandes</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.orders-page{
+    min-height:100vh;
+    padding:30px;
+}
+
+.page-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.orders-container{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.orders-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.orders-table th,
+.orders-table td{
+    padding:16px;
+    text-align:left;
+}
+
+.orders-table th{
+    background:rgba(255,255,255,.05);
+}
+
+.orders-table tr:not(:last-child){
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.status{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:600;
+}
+
+.pending{
+    background:rgba(245,158,11,.2);
+}
+
+.completed{
+    background:rgba(34,197,94,.2);
+}
+
+.cancelled{
+    background:rgba(239,68,68,.2);
+}
+
+.empty-orders{
+    padding:60px 20px;
+    text-align:center;
+}
+
+@media(max-width:768px){
+
+    .orders-page{
+        padding:20px;
+    }
+
+    .orders-container{
+        overflow-x:auto;
+    }
+
+    .orders-table{
+        min-width:700px;
+    }
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="orders-page">
+
+    <div class="page-title">
+        Gestion des Commandes
+    </div>
+
+    <div class="orders-container">
+
+        <table class="orders-table">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Produit</th>
+                    <th>Client</th>
+                    <th>Montant</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody id="ordersTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="orders.js"></script>
+
+</body>
+</html>

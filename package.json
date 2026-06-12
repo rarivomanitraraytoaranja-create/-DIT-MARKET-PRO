@@ -1,1 +1,28 @@
-
+{
+  "name": "edit-market-pro",
+  "version": "1.0.0",
+  "description": "ÉDIT MARKET PRO - Marketplace de produits digitaux (templates, effets, assets, vidéos)",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server",
+    "build": "echo \"No build step needed for static site\"",
+    "preview": "npx serve ."
+  },
+  "keywords": [
+    "marketplace",
+    "video",
+    "templates",
+    "after effects",
+    "davinci resolve",
+    "digital products",
+    "assets",
+    "edit market pro"
+  ],
+  "author": "ÉDIT MARKET PRO",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  }
+}

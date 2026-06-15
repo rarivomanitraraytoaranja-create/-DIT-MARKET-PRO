@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO - Checkout</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --card:rgba(17,24,39,0.6);
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter,system-ui,sans-serif;
+    }
+
+    body{
+      background: radial-gradient(circle at top, #1a0b2e, var(--bg));
+      color:var(--text);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 25px;
+      background:rgba(5,5,10,0.7);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(139,92,246,0.2);
+      position:sticky;
+      top:0;
+    }
+
+    .logo{
+      color:var(--violet);
+      font-weight:bold;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:auto;
+      padding:30px 20px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:25px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(139,92,246,0.2);
+      border-radius:18px;
+      padding:25px;
+      backdrop-filter:blur(20px);
+    }
+
+    h2{
+      color:var(--violet2);
+      margin-bottom:15px;
+    }
+
+    .info{
+      color:var(--muted);
+      margin:8px 0;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      margin:8px 0;
+      border-radius:12px;
+      border:1px solid rgba(139,92,246,0.3);
+      background:rgba(0,0,0,0.4);
+      color:white;
+      outline:none;
+    }
+
+    .btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--violet),var(--violet2));
+      color:white;
+      cursor:pointer;
+      margin-top:10px;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.03);
+    }
+
+    .vanilla{
+      padding:15px;
+      border-radius:14px;
+      border:1px solid rgba(139,92,246,0.2);
+      background:rgba(139,92,246,0.08);
+      margin-bottom:15px;
+    }
+
+    .price{
+      font-size:22px;
+      color:var(--violet);
+      font-weight:bold;
+    }
+
+    @media(max-width:900px){
+      .container{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">ÉDIT MARKET PRO</div>
+  <button class="btn" onclick="goBack()">Retour</button>
+</nav>
+
+<div class="container">
+
+  <!-- LEFT : PAYMENT INFO -->
+  <div class="card">
+
+    <h2>💳 Paiement Vanilla Pay</h2>
+
+    <div class="vanilla">
+      <p class="info"><b>Vendeur :</b> ÉDIT MARKET PRO</p>
+      <p class="info"><b>Compte :</b> VANILLA-PAY-EDIT-PRO</p>
+      <p class="info"><b>Numéro receveur :</b> +261 34 XX XXX XX</p>
+      <p class="info"><b>Email :</b> support@editmarketpro.com</p>
+    </div>
+
+    <p class="info">Produit :</p>
+    <div class="price" id="productName">-</div>
+
+    <p class="info">Prix :</p>
+    <div class="price" id="price">-</div>
+
+  </div>
+
+  <!-- RIGHT : FORM -->
+  <div class="card">
+
+    <h2>🧾 Informations client</h2>
+
+    <input type="text" id="clientName" placeholder="Nom sur Vanilla Pay"/>
+    <input type="text" id="clientNumber" placeholder="Numéro Vanilla Pay"/>
+    <input type="text" id="transactionId" placeholder="ID transaction"/>
+    <input type="text" id="reference" placeholder="Référence paiement"/>
+
+    <button class="btn" onclick="confirmPayment()">
+      Paiement effectué
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+  const product = localStorage.getItem("checkoutProduct");
+  const price = localStorage.getItem("checkoutPrice");
+
+  document.getElementById("productName").innerText = product || "Produit inconnu";
+  document.getElementById("price").innerText = price || "0€";
+
+  function confirmPayment(){
+
+    const data = {
+      product,
+      price,
+      clientName: document.getElementById("clientName").value,
+      clientNumber: document.getElementById("clientNumber").value,
+      transactionId: document.getElementById("transactionId").value,
+      reference: document.getElementById("reference").value,
+      date: new Date().toISOString()
+    };
+
+    if(!data.clientName || !data.clientNumber || !data.transactionId){
+      alert("Veuillez remplir tous les champs !");
+      return;
+    }
+
+    let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+    orders.push(data);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    localStorage.setItem("lastOrder", JSON.stringify(data));
+
+    // loading simulation
+    document.body.innerHTML = `
+      <div style="display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;color:white;">
+        <h2>Validation du paiement...</h2>
+        <p>Veuillez patienter</p>
+      </div>
+    `;
+
+    setTimeout(()=>{
+      window.location.href="confirmation.html";
+    }, 5000);
+  }
+
+  function goBack(){
+    window.location.href="product.html";
+  }
+</script>
+
+</body>
+</html>

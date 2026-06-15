@@ -1,0 +1,50 @@
+{
+  "siteName": "ÉDIT MARKET PRO",
+  "slogan": "Marketplace Premium de Produits Numériques",
+  "description": "Plateforme premium pour créateurs de contenu : templates, motion design, VFX, audio et formations.",
+
+  "logo": "assets/img/logo/logo.png",
+  "favicon": "favicon.ico",
+
+  "theme": {
+    "primaryColor": "#8B5CF6",
+    "secondaryColor": "#A855F7",
+    "background": "#05050A",
+    "text": "#FFFFFF"
+  },
+
+  "vanillaPay": {
+    "sellerName": "ÉDIT MARKET PRO",
+    "accountName": "",
+    "accountNumber": "",
+    "currency": "MGA",
+    "paymentMessage": "Paiement sécurisé via Vanilla Pay"
+  },
+
+  "contact": {
+    "email": "contact@editmarketpro.com",
+    "phone": "",
+    "address": "Antananarivo, Madagascar"
+  },
+
+  "socials": {
+    "instagram": "",
+    "tiktok": "",
+    "youtube": "",
+    "facebook": ""
+  },
+
+  "features": {
+    "googleLogin": true,
+    "wishlist": true,
+    "purchasesHistory": true,
+    "darkMode": true,
+    "pwa": true
+  },
+
+  "checkout": {
+    "currency": "MGA",
+    "tax": 0,
+    "autoRedirectDelay": 5000
+  }
+}

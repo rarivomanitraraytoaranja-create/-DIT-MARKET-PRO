@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO — Admin Dashboard</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --card:rgba(17,24,39,0.55);
+      --stroke:rgba(255,255,255,0.08);
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui;}
+
+    body{
+      background: radial-gradient(circle at top, #1a0b2e 0%, var(--bg) 40%);
+      color:var(--text);
+      min-height:100vh;
+      padding:30px;
+    }
+
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:30px;
+    }
+
+    .title{
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:0.5px;
+    }
+
+    .badge{
+      padding:8px 14px;
+      border:1px solid var(--stroke);
+      border-radius:12px;
+      background:rgba(139,92,246,0.1);
+      color:var(--violet2);
+      font-size:12px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      backdrop-filter: blur(12px);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 0 25px rgba(139,92,246,0.08);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 35px rgba(139,92,246,0.25);
+    }
+
+    .label{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .value{
+      font-size:26px;
+      font-weight:700;
+      margin-top:10px;
+    }
+
+    .section{
+      margin-top:30px;
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      padding:20px;
+      backdrop-filter: blur(12px);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+    }
+
+    th,td{
+      padding:12px;
+      text-align:left;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      font-size:13px;
+    }
+
+    th{
+      color:var(--muted);
+      font-weight:500;
+    }
+
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--violet);
+      display:inline-block;
+      margin-right:6px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="title">📊 ÉDIT MARKET PRO — Admin Dashboard</div>
+    <div class="badge">SaaS Analytics Panel</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="grid">
+    <div class="card">
+      <div class="label">💰 Revenus totaux</div>
+      <div class="value" id="revenue">0 €</div>
+    </div>
+
+    <div class="card">
+      <div class="label">🛒 Ventes</div>
+      <div class="value" id="sales">0</div>
+    </div>
+
+    <div class="card">
+      <div class="label">📦 Produits</div>
+      <div class="value" id="products">0</div>
+    </div>
+
+    <div class="card">
+      <div class="label">👤 Utilisateurs</div>
+      <div class="value" id="users">1</div>
+    </div>
+  </div>
+
+  <!-- RECENT ORDERS -->
+  <div class="section">
+    <h3><span class="dot"></span>Dernières commandes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Client</th>
+          <th>Produit</th>
+          <th>Prix</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTable"></tbody>
+    </table>
+  </div>
+
+  <script>
+    // 🔥 DATA LOCALSTORAGE
+    const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+    const products = JSON.parse(localStorage.getItem("products") || "[]");
+    const users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+
+    // 💰 REVENUE CALC
+    const revenue = orders.reduce((sum, o) => {
+      return sum + (Number(o.price || o.total || 0));
+    }, 0);
+
+    document.getElementById("revenue").innerText = revenue + " €";
+    document.getElementById("sales").innerText = orders.length;
+    document.getElementById("products").innerText = products.length;
+    document.getElementById("users").innerText = Math.max(users.length, 1);
+
+    // 📋 ORDERS TABLE
+    const tbody = document.getElementById("ordersTable");
+
+    if (orders.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="4" style="color:#9CA3AF;">Aucune commande pour le moment</td>
+        </tr>
+      `;
+    } else {
+      orders.slice(-5).reverse().forEach(o => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${o.customer || o.email || "Client"}</td>
+          <td>${o.productName || o.product || "Produit"}</td>
+          <td>${o.price || 0} €</td>
+          <td><span style="color:#A855F7;">Validé</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+  </script>
+
+</body>
+</html>

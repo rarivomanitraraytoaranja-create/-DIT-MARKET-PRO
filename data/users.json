@@ -1,0 +1,14 @@
+[
+  {
+    "id": "USR-171845000001",
+    "name": "Jean Dupont",
+    "email": "jean@email.com",
+    "provider": "email",
+    "avatar": "assets/img/users/default-avatar.png",
+    "wishlist": [],
+    "purchases": [],
+    "role": "customer",
+    "createdAt": "2026-06-15T10:00:00Z",
+    "lastLogin": "2026-06-15T10:30:00Z"
+  }
+]

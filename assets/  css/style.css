@@ -1,0 +1,144 @@
+/**
+ * 🌐 ÉDIT MARKET PRO — GLOBAL STYLE
+ * Base UI system (layout + typography + components)
+ */
+
+:root{
+  --bg:#05050A;
+  --card:rgba(17,24,39,0.55);
+  --stroke:rgba(255,255,255,0.08);
+
+  --violet:#8B5CF6;
+  --violet2:#A855F7;
+
+  --text:#FFFFFF;
+  --muted:#9CA3AF;
+
+  --radius:16px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+}
+
+/* =========================
+   🧱 LAYOUT
+========================= */
+
+.container{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+.grid{
+  display:grid;
+  gap:20px;
+}
+
+.flex{
+  display:flex;
+  align-items:center;
+}
+
+.space-between{
+  justify-content:space-between;
+}
+
+/* =========================
+   🧊 CARDS
+========================= */
+
+.card{
+  background: var(--card);
+  border:1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding:20px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(139,92,246,0.25);
+}
+
+/* =========================
+   🔘 BUTTONS
+========================= */
+
+button{
+  cursor:pointer;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.btn-primary{
+  background: linear-gradient(90deg,var(--violet),var(--violet2));
+  color:white;
+  padding:10px 14px;
+}
+
+.btn-primary:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 20px rgba(139,92,246,0.3);
+}
+
+.btn-dark{
+  background: rgba(255,255,255,0.08);
+  color:white;
+  padding:10px 14px;
+}
+
+/* =========================
+   ✍️ INPUTS
+========================= */
+
+input, textarea, select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--stroke);
+  background: rgba(0,0,0,0.3);
+  color:white;
+  outline:none;
+  margin:6px 0 12px 0;
+}
+
+input:focus{
+  border-color: var(--violet);
+}
+
+/* =========================
+   🧾 TEXT
+========================= */
+
+h1,h2,h3{
+  font-weight:700;
+}
+
+p{
+  color: var(--muted);
+  font-size:14px;
+}
+
+/* =========================
+   📱 RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+  .grid{
+    grid-template-columns:1fr !important;
+  }
+}

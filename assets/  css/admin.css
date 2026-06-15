@@ -1,0 +1,200 @@
+/**
+ * 🧠 ÉDIT MARKET PRO — ADMIN PANEL STYLE
+ * SaaS dashboard UI (tables + stats + layout)
+ */
+
+/* =========================
+   🧱 GLOBAL ADMIN LAYOUT
+========================= */
+
+.admin-container{
+  padding: 25px;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1a0b2e 0%, #05050A 60%);
+  color: white;
+}
+
+/* =========================
+   📊 HEADER
+========================= */
+
+.admin-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.admin-title{
+  font-size:22px;
+  font-weight:700;
+}
+
+.admin-badge{
+  padding:8px 14px;
+  border-radius:12px;
+  background:rgba(139,92,246,0.1);
+  border:1px solid rgba(255,255,255,0.08);
+  color:#A855F7;
+  font-size:12px;
+}
+
+/* =========================
+   📦 STATS CARDS
+========================= */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.stat-card{
+  background:rgba(17,24,39,0.55);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+  border-radius:16px;
+  padding:20px;
+  transition:0.3s;
+}
+
+.stat-card:hover{
+  transform: translateY(-5px);
+  box-shadow:0 0 25px rgba(139,92,246,0.25);
+}
+
+.stat-label{
+  font-size:12px;
+  color:#9CA3AF;
+}
+
+.stat-value{
+  font-size:24px;
+  font-weight:700;
+  margin-top:10px;
+}
+
+/* =========================
+   📋 TABLES
+========================= */
+
+.table-wrapper{
+  background:rgba(17,24,39,0.55);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:15px;
+  backdrop-filter: blur(14px);
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td{
+  padding:12px;
+  text-align:left;
+  font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+th{
+  color:#9CA3AF;
+  font-weight:500;
+}
+
+tr:hover{
+  background:rgba(139,92,246,0.08);
+}
+
+/* =========================
+   🟣 STATUS BADGES
+========================= */
+
+.badge-success{
+  background:rgba(34,197,94,0.15);
+  color:#22c55e;
+  padding:4px 10px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.badge-warning{
+  background:rgba(234,179,8,0.15);
+  color:#eab308;
+  padding:4px 10px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.badge-danger{
+  background:rgba(239,68,68,0.15);
+  color:#ef4444;
+  padding:4px 10px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+/* =========================
+   🎛️ FILTERS / INPUTS
+========================= */
+
+.admin-input,
+.admin-select{
+  padding:10px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(0,0,0,0.3);
+  color:white;
+  outline:none;
+  margin:5px;
+}
+
+/* =========================
+   🔘 BUTTONS
+========================= */
+
+.admin-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  background:linear-gradient(90deg,#8B5CF6,#A855F7);
+  color:white;
+  transition:0.3s;
+}
+
+.admin-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(139,92,246,0.3);
+}
+
+/* =========================
+   📈 CHART BOX
+========================= */
+
+.chart-box{
+  background:rgba(17,24,39,0.55);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:20px;
+  backdrop-filter: blur(14px);
+  margin-top:20px;
+}
+
+/* =========================
+   📱 RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  th, td{
+    font-size:12px;
+  }
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO — Settings</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --card:rgba(17,24,39,0.55);
+      --stroke:rgba(255,255,255,0.08);
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter,system-ui;
+    }
+
+    body{
+      background: radial-gradient(circle at top, #1a0b2e 0%, var(--bg) 40%);
+      color:var(--text);
+      min-height:100vh;
+      padding:30px;
+    }
+
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+
+    .title{
+      font-size:22px;
+      font-weight:700;
+    }
+
+    .badge{
+      padding:8px 14px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      background:rgba(139,92,246,0.1);
+      color:var(--violet2);
+      font-size:12px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      padding:20px;
+      backdrop-filter:blur(12px);
+    }
+
+    label{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    input, textarea{
+      width:100%;
+      padding:10px;
+      margin-top:6px;
+      margin-bottom:12px;
+      border-radius:10px;
+      border:1px solid var(--stroke);
+      background:rgba(0,0,0,0.3);
+      color:white;
+      outline:none;
+    }
+
+    button{
+      padding:10px 14px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+      background:linear-gradient(90deg,var(--violet),var(--violet2));
+      color:white;
+    }
+
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 20px rgba(139,92,246,0.3);
+    }
+
+    .small{
+      font-size:11px;
+      color:var(--muted);
+      margin-top:10px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="title">⚙️ ÉDIT MARKET PRO — Settings</div>
+    <div class="badge">Vanilla Pay Config</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- VANILLA PAY -->
+    <div class="card">
+      <h3>💳 Configuration Vanilla Pay</h3>
+
+      <label>Nom du vendeur</label>
+      <input id="sellerName" placeholder="ÉDIT MARKET PRO" />
+
+      <label>Nom compte Vanilla Pay</label>
+      <input id="vpName" placeholder="Nom compte" />
+
+      <label>Numéro receveur</label>
+      <input id="vpNumber" placeholder="034 XX XXX XX" />
+
+      <label>Email support</label>
+      <input id="email" placeholder="support@email.com" />
+
+      <button onclick="saveSettings()">💾 Sauvegarder</button>
+
+      <div class="small">Ces données sont utilisées automatiquement dans checkout.html</div>
+    </div>
+
+    <!-- SITE SETTINGS -->
+    <div class="card">
+      <h3>🌐 Paramètres site</h3>
+
+      <label>Nom du site</label>
+      <input id="siteName" placeholder="ÉDIT MARKET PRO" />
+
+      <label>Logo URL</label>
+      <input id="logo" placeholder="assets/img/logo.png" />
+
+      <label>Instagram</label>
+      <input id="ig" placeholder="https://instagram.com/..." />
+
+      <label>TikTok</label>
+      <input id="tiktok" placeholder="https://tiktok.com/..." />
+
+      <label>Message de paiement</label>
+      <textarea id="msg" placeholder="Merci pour votre achat..."></textarea>
+
+      <button onclick="saveSettings()">💾 Sauvegarder</button>
+
+      <div class="small">Stocké en localStorage uniquement (config.json simulé)</div>
+    </div>
+
+  </div>
+
+  <script>
+    const config = JSON.parse(localStorage.getItem("config") || "{}");
+
+    // load existing
+    document.getElementById("sellerName").value = config.sellerName || "ÉDIT MARKET PRO";
+    document.getElementById("vpName").value = config.vpName || "";
+    document.getElementById("vpNumber").value = config.vpNumber || "";
+    document.getElementById("email").value = config.email || "";
+    document.getElementById("siteName").value = config.siteName || "ÉDIT MARKET PRO";
+    document.getElementById("logo").value = config.logo || "";
+    document.getElementById("ig").value = config.ig || "";
+    document.getElementById("tiktok").value = config.tiktok || "";
+    document.getElementById("msg").value = config.msg || "Merci pour votre achat chez ÉDIT MARKET PRO";
+
+    function saveSettings(){
+      const newConfig = {
+        sellerName: document.getElementById("sellerName").value,
+        vpName: document.getElementById("vpName").value,
+        vpNumber: document.getElementById("vpNumber").value,
+        email: document.getElementById("email").value,
+        siteName: document.getElementById("siteName").value,
+        logo: document.getElementById("logo").value,
+        ig: document.getElementById("ig").value,
+        tiktok: document.getElementById("tiktok").value,
+        msg: document.getElementById("msg").value
+      };
+
+      localStorage.setItem("config", JSON.stringify(newConfig));
+
+      alert("✅ Paramètres sauvegardés !");
+    }
+  </script>
+
+</body>
+</html>

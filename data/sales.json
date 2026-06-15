@@ -1,0 +1,25 @@
+[
+  {
+    "id": "SALE-001",
+    "orderId": "ORD-171845000001",
+    "productId": 1,
+    "productName": "Cinematic Transition Pack",
+    "category": "Transitions",
+
+    "quantity": 1,
+    "unitPrice": 29000,
+    "totalPrice": 29000,
+
+    "buyer": {
+      "name": "Jean Dupont",
+      "email": "jean@email.com"
+    },
+
+    "paymentMethod": "Vanilla Pay",
+    "transactionId": "VP-000000",
+
+    "status": "completed",
+
+    "createdAt": "2026-06-15T10:30:00Z"
+  }
+]

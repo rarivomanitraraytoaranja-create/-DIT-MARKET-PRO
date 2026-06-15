@@ -1,0 +1,18 @@
+# system files
+.DS_Store
+Thumbs.db
+
+# dependencies (si futur évolution)
+node_modules/
+
+# logs
+*.log
+
+# environment variables
+.env
+
+# cache
+.cache/
+
+# build
+dist/

@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Vidéo",
+    "slug": "video",
+    "icon": "🎬",
+    "description": "Templates, presets et ressources pour le montage vidéo."
+  },
+  {
+    "id": 2,
+    "name": "Motion",
+    "slug": "motion",
+    "icon": "✨",
+    "description": "Motion design, animations et packs graphiques."
+  },
+  {
+    "id": 3,
+    "name": "LUTs",
+    "slug": "luts",
+    "icon": "🌈",
+    "description": "LUTs et PowerGrades professionnels."
+  },
+  {
+    "id": 4,
+    "name": "Transitions",
+    "slug": "transitions",
+    "icon": "🔄",
+    "description": "Transitions cinématiques et effets de passage."
+  },
+  {
+    "id": 5,
+    "name": "Assets",
+    "slug": "assets",
+    "icon": "🎥",
+    "description": "VFX, overlays, B-roll et ressources vidéo."
+  },
+  {
+    "id": 6,
+    "name": "Audio",
+    "slug": "audio",
+    "icon": "🔊",
+    "description": "Effets sonores, musiques et ambiances."
+  },
+  {
+    "id": 7,
+    "name": "Plugins",
+    "slug": "plugins",
+    "icon": "🔌",
+    "description": "Plugins, scripts et extensions créatives."
+  },
+  {
+    "id": 8,
+    "name": "Design",
+    "slug": "design",
+    "icon": "🎨",
+    "description": "PSD, mockups et kits de branding."
+  },
+  {
+    "id": 9,
+    "name": "Formations",
+    "slug": "formations",
+    "icon": "🎓",
+    "description": "Cours et formations professionnelles."
+  },
+  {
+    "id": 10,
+    "name": "Bundles",
+    "slug": "bundles",
+    "icon": "📦",
+    "description": "Mega packs et bundles premium."
+  }
+]

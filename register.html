@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO - Inscription</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+      --card:rgba(17,24,39,0.6);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter,system-ui,sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: radial-gradient(circle at top, #1a0b2e, var(--bg));
+      color:var(--text);
+    }
+
+    .card{
+      width:90%;
+      max-width:420px;
+      padding:30px;
+      border-radius:20px;
+      background:var(--card);
+      border:1px solid rgba(139,92,246,0.2);
+      backdrop-filter:blur(20px);
+      animation:fadeIn 0.8s ease;
+    }
+
+    h1{
+      text-align:center;
+      color:var(--violet2);
+      margin-bottom:20px;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      margin:10px 0;
+      border-radius:12px;
+      border:1px solid rgba(139,92,246,0.3);
+      background:rgba(0,0,0,0.4);
+      color:white;
+      outline:none;
+    }
+
+    .btn{
+      width:100%;
+      padding:12px;
+      margin-top:10px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--violet),var(--violet2));
+      color:white;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.03);
+    }
+
+    .google{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+    }
+
+    .google:hover{
+      box-shadow:0 0 20px rgba(139,92,246,0.3);
+    }
+
+    .link{
+      text-align:center;
+      margin-top:15px;
+      font-size:13px;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    .link:hover{
+      color:var(--violet2);
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <h1>Créer un compte</h1>
+
+  <!-- GOOGLE -->
+  <button class="btn google" onclick="googleRegister()">
+    🔵 S'inscrire avec Google
+  </button>
+
+  <input type="text" id="name" placeholder="Nom complet"/>
+  <input type="email" id="email" placeholder="Email"/>
+  <input type="password" id="password" placeholder="Mot de passe"/>
+  <input type="password" id="confirm" placeholder="Confirmer mot de passe"/>
+
+  <button class="btn" onclick="register()">
+    Créer mon compte
+  </button>
+
+  <div class="link" onclick="goLogin()">
+    Déjà un compte ? Se connecter
+  </div>
+
+</div>
+
+<script>
+  // auto redirect si déjà connecté
+  const session = JSON.parse(localStorage.getItem("userSession"));
+  if(session){
+    window.location.href="index.html";
+  }
+
+  function register(){
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirm").value;
+
+    if(!name || !email || !password || !confirm){
+      alert("Remplis tous les champs !");
+      return;
+    }
+
+    if(password !== confirm){
+      alert("Les mots de passe ne correspondent pas !");
+      return;
+    }
+
+    const user = {
+      name,
+      email,
+      type:"email",
+      createdAt: new Date().toISOString()
+    };
+
+    // sauvegarde user
+    localStorage.setItem("userSession", JSON.stringify(user));
+
+    // init wishlist + purchases
+    localStorage.setItem("wishlist", JSON.stringify([]));
+    localStorage.setItem("purchases", JSON.stringify([]));
+
+    window.location.href="index.html";
+  }
+
+  function googleRegister(){
+    const user = {
+      name:"Google User",
+      email:"googleuser@gmail.com",
+      type:"google",
+      createdAt: new Date().toISOString()
+    };
+
+    localStorage.setItem("userSession", JSON.stringify(user));
+    localStorage.setItem("wishlist", JSON.stringify([]));
+    localStorage.setItem("purchases", JSON.stringify([]));
+
+    window.location.href="index.html";
+  }
+
+  function goLogin(){
+    window.location.href="login.html";
+  }
+</script>
+
+</body>
+</html>

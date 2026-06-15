@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO - Téléchargement</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+      --card:rgba(17,24,39,0.6);
+      --green:#22c55e;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter,system-ui,sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: radial-gradient(circle at top, #1a0b2e, var(--bg));
+      color:var(--text);
+      text-align:center;
+      padding:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(139,92,246,0.2);
+      padding:35px;
+      border-radius:20px;
+      backdrop-filter:blur(20px);
+      max-width:520px;
+      width:100%;
+      animation: fadeIn 0.8s ease;
+    }
+
+    h1{
+      color:var(--violet2);
+      margin-bottom:10px;
+    }
+
+    p{
+      color:var(--muted);
+      margin:8px 0;
+    }
+
+    .product{
+      margin:15px 0;
+      font-size:18px;
+      color:white;
+      font-weight:bold;
+    }
+
+    .status{
+      color:var(--green);
+      margin-top:10px;
+      font-weight:bold;
+    }
+
+    .btn{
+      margin-top:20px;
+      padding:12px 18px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--violet),var(--violet2));
+      color:white;
+      cursor:pointer;
+      transition:0.3s;
+      width:100%;
+    }
+
+    .btn:hover{
+      transform:scale(1.03);
+    }
+
+    .lock{
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="lock">⬇️</div>
+
+  <h1>Téléchargement sécurisé</h1>
+
+  <p>Accès réservé aux achats confirmés</p>
+
+  <div class="product" id="product">Chargement...</div>
+
+  <div class="status" id="status">Vérification de votre achat...</div>
+
+  <button class="btn" id="downloadBtn" style="display:none;" onclick="downloadFile()">
+    Télécharger maintenant
+  </button>
+
+</div>
+
+<script>
+  const order = JSON.parse(localStorage.getItem("lastOrder"));
+
+  const productEl = document.getElementById("product");
+  const statusEl = document.getElementById("status");
+  const btn = document.getElementById("downloadBtn");
+
+  // Fake database de fichiers
+  const files = {
+    "Cinematic Intro Pack": "cinematic-intro.zip",
+    "Premiere Pro LUT Bundle": "lut-bundle.zip",
+    "Glitch Transition Pack": "glitch-pack.zip",
+    "YouTube SFX Pack": "sfx-pack.zip",
+    "AE Title Pack": "ae-title-pack.zip"
+  };
+
+  if(order && order.status === "confirmed"){
+    productEl.innerText = order.product || "Produit inconnu";
+    statusEl.innerText = "✔ Achat confirmé - accès autorisé";
+
+    setTimeout(()=>{
+      btn.style.display = "block";
+    }, 1500);
+
+  } else {
+    productEl.innerText = "Aucun achat détecté";
+    statusEl.innerText = "⛔ Accès refusé";
+  }
+
+  function downloadFile(){
+    const file = files[order.product] || "default-file.zip";
+
+    // simulation téléchargement
+    const link = document.createElement("a");
+    link.href = "#"; 
+    link.download = file;
+    link.click();
+
+    alert("Téléchargement lancé : " + file);
+  }
+</script>
+
+</body>
+</html>

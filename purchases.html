@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO - Achats</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+      --card:rgba(17,24,39,0.6);
+      --green:#22c55e;
+      --yellow:#facc15;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter,system-ui,sans-serif;
+    }
+
+    body{
+      background: radial-gradient(circle at top, #1a0b2e, var(--bg));
+      color:var(--text);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 25px;
+      background:rgba(5,5,10,0.7);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(139,92,246,0.2);
+      position:sticky;
+      top:0;
+    }
+
+    .logo{
+      color:var(--violet);
+      font-weight:bold;
+    }
+
+    .btn{
+      padding:10px 14px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--violet),var(--violet2));
+      color:white;
+      cursor:pointer;
+    }
+
+    .container{
+      max-width:900px;
+      margin:auto;
+      padding:30px 20px;
+    }
+
+    h1{
+      color:var(--violet2);
+      margin-bottom:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(139,92,246,0.2);
+      padding:20px;
+      border-radius:16px;
+      backdrop-filter:blur(20px);
+      margin-bottom:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .name{
+      font-weight:bold;
+    }
+
+    .price{
+      color:var(--violet2);
+      margin-top:5px;
+    }
+
+    .status{
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:8px;
+      background:rgba(34,197,94,0.15);
+      border:1px solid rgba(34,197,94,0.4);
+      color:var(--green);
+      display:inline-block;
+      margin-top:6px;
+    }
+
+    .empty{
+      text-align:center;
+      color:var(--muted);
+      margin-top:50px;
+    }
+
+    .info{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .meta{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:4px;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">ÉDIT MARKET PRO</div>
+  <button class="btn" onclick="goHome()">Accueil</button>
+</nav>
+
+<div class="container">
+
+  <h1>🛒 Mes achats</h1>
+
+  <div id="list"></div>
+
+</div>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("userSession"));
+
+  if(!user){
+    window.location.href="login.html";
+  }
+
+  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+  const list = document.getElementById("list");
+
+  function render(){
+
+    list.innerHTML = "";
+
+    if(orders.length === 0){
+      list.innerHTML = `<p class="empty">Aucun achat effectué</p>`;
+      return;
+    }
+
+    orders.forEach(order=>{
+
+      const div = document.createElement("div");
+      div.className="card";
+
+      div.innerHTML=`
+        <div class="info">
+          <div class="name">📦 ${order.product}</div>
+          <div class="price">${order.price}</div>
+          <div class="meta">ID: ${order.transactionId || "N/A"}</div>
+          <div class="meta">Date: ${new Date(order.date).toLocaleString()}</div>
+        </div>
+
+        <div>
+          <span class="status">✔ Validé</span>
+        </div>
+      `;
+
+      list.appendChild(div);
+    });
+  }
+
+  function goHome(){
+    window.location.href="index.html";
+  }
+
+  render();
+</script>
+
+</body>
+</html>

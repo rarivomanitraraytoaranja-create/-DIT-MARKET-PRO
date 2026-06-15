@@ -1,0 +1,18 @@
+{
+  "totalRevenue": 0,
+  "monthlyRevenue": 0,
+  "dailyRevenue": 0,
+
+  "totalSales": 0,
+  "monthlySales": 0,
+  "dailySales": 0,
+
+  "totalVisitors": 0,
+  "monthlyVisitors": 0,
+  "dailyVisitors": 0,
+
+  "topProducts": [],
+  "salesByCategory": [],
+  "revenueHistory": [],
+  "visitorHistory": []
+}

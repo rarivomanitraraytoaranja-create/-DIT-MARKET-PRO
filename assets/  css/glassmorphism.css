@@ -1,0 +1,131 @@
+/**
+ * 🧊 ÉDIT MARKET PRO — GLASSMORPHISM LAYER
+ * Premium SaaS visual effects (blur + glow + luxury UI)
+ */
+
+/* =========================
+   🌫️ GLOBAL BACKDROP EFFECTS
+========================= */
+
+.glass{
+  background: rgba(17, 24, 39, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+
+/* =========================
+   ✨ GLOW EFFECTS (VIOLET THEME)
+========================= */
+
+.glow{
+  box-shadow: 0 0 20px rgba(139,92,246,0.25);
+}
+
+.glow-hover{
+  transition: 0.3s ease;
+}
+
+.glow-hover:hover{
+  box-shadow: 0 0 30px rgba(139,92,246,0.45);
+  transform: translateY(-4px);
+}
+
+/* =========================
+   🎨 PREMIUM CARDS
+========================= */
+
+.card-glass{
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.card-glass:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px rgba(139,92,246,0.3);
+}
+
+/* =========================
+   🔘 PREMIUM BUTTON EFFECTS
+========================= */
+
+.btn-glow{
+  background: linear-gradient(90deg, #8B5CF6, #A855F7);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(139,92,246,0.2);
+}
+
+.btn-glow:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(139,92,246,0.5);
+}
+
+/* =========================
+   🧊 INPUT GLASS STYLE
+========================= */
+
+.input-glass{
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  color: white;
+  border-radius: 12px;
+  padding: 10px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-glass:focus{
+  border-color: #8B5CF6;
+  box-shadow: 0 0 15px rgba(139,92,246,0.2);
+}
+
+/* =========================
+   🌟 ANIMATIONS
+========================= */
+
+@keyframes fadeIn{
+  from {opacity:0; transform:translateY(10px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+.fade-in{
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes pulseGlow{
+  0% { box-shadow: 0 0 10px rgba(139,92,246,0.2); }
+  50% { box-shadow: 0 0 25px rgba(139,92,246,0.4); }
+  100% { box-shadow: 0 0 10px rgba(139,92,246,0.2); }
+}
+
+.pulse-glow{
+  animation: pulseGlow 2s infinite;
+}
+
+/* =========================
+   🌌 BACKGROUND FX
+========================= */
+
+.bg-gradient{
+  background: radial-gradient(circle at top, #1a0b2e 0%, #05050A 60%);
+}
+
+/* =========================
+   📱 MOBILE ENHANCEMENT
+========================= */
+
+@media (max-width:768px){
+  .card-glass{
+    padding: 15px;
+  }
+}

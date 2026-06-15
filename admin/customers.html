@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO — Customers</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --card:rgba(17,24,39,0.55);
+      --stroke:rgba(255,255,255,0.08);
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter,system-ui;
+    }
+
+    body{
+      background: radial-gradient(circle at top, #1a0b2e 0%, var(--bg) 40%);
+      color:var(--text);
+      min-height:100vh;
+      padding:30px;
+    }
+
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+
+    .title{
+      font-size:22px;
+      font-weight:700;
+    }
+
+    .badge{
+      padding:8px 14px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      background:rgba(139,92,246,0.1);
+      color:var(--violet2);
+      font-size:12px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      padding:20px;
+      backdrop-filter:blur(12px);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th,td{
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      font-size:13px;
+      text-align:left;
+    }
+
+    th{
+      color:var(--muted);
+    }
+
+    .pill{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:8px;
+      font-size:12px;
+      background:rgba(139,92,246,0.15);
+      color:var(--violet2);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="title">👥 ÉDIT MARKET PRO — Customers</div>
+    <div class="badge">Users localStorage</div>
+  </div>
+
+  <div class="card">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Type</th>
+          <th>Achats</th>
+          <th>Date création</th>
+        </tr>
+      </thead>
+
+      <tbody id="customersTable"></tbody>
+    </table>
+
+  </div>
+
+  <script>
+    const users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+    const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+    const table = document.getElementById("customersTable");
+
+    function getPurchases(email){
+      return orders.filter(o => o.email === email).length;
+    }
+
+    if(users.length === 0){
+      table.innerHTML = `
+        <tr>
+          <td colspan="5" style="color:#9CA3AF;">Aucun utilisateur enregistré</td>
+        </tr>
+      `;
+    } else {
+      users.forEach(u => {
+        const tr = document.createElement("tr");
+
+        const email = u.email || "unknown";
+        const purchases = getPurchases(email);
+
+        tr.innerHTML = `
+          <td>${u.name || "Utilisateur"}</td>
+          <td>${email}</td>
+          <td><span class="pill">${u.type || "client"}</span></td>
+          <td>${purchases}</td>
+          <td>${u.date || new Date().toLocaleDateString()}</td>
+        `;
+
+        table.appendChild(tr);
+      });
+    }
+  </script>
+
+</body>
+</html>

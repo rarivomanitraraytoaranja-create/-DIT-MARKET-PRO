@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO - Profil</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+      --card:rgba(17,24,39,0.6);
+      --green:#22c55e;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter,system-ui,sans-serif;
+    }
+
+    body{
+      background: radial-gradient(circle at top, #1a0b2e, var(--bg));
+      color:var(--text);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 25px;
+      background:rgba(5,5,10,0.7);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(139,92,246,0.2);
+      position:sticky;
+      top:0;
+    }
+
+    .logo{
+      color:var(--violet);
+      font-weight:bold;
+    }
+
+    .btn{
+      padding:10px 14px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--violet),var(--violet2));
+      color:white;
+      cursor:pointer;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:auto;
+      padding:30px 20px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(139,92,246,0.2);
+      border-radius:18px;
+      padding:25px;
+      backdrop-filter:blur(20px);
+    }
+
+    h2{
+      color:var(--violet2);
+      margin-bottom:15px;
+    }
+
+    .info{
+      color:var(--muted);
+      margin:6px 0;
+    }
+
+    .stat{
+      font-size:22px;
+      font-weight:bold;
+      color:var(--violet);
+    }
+
+    ul{
+      list-style:none;
+      padding:0;
+    }
+
+    li{
+      padding:8px 0;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      color:var(--muted);
+    }
+
+    .logout{
+      margin-top:10px;
+      background:rgba(255,0,0,0.2);
+      border:1px solid rgba(255,0,0,0.3);
+    }
+
+    @media(max-width:900px){
+      .grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">ÉDIT MARKET PRO</div>
+  <div>
+    <button class="btn" onclick="goHome()">Accueil</button>
+    <button class="btn logout" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="grid">
+
+    <!-- USER INFO -->
+    <div class="card">
+      <h2>👤 Mon profil</h2>
+
+      <p class="info">Nom :</p>
+      <div class="stat" id="name">-</div>
+
+      <p class="info">Email :</p>
+      <div class="stat" style="font-size:16px" id="email">-</div>
+
+      <p class="info">Type de compte :</p>
+      <div class="stat" style="font-size:16px" id="type">-</div>
+
+      <p class="info">Membre depuis :</p>
+      <div class="stat" style="font-size:16px" id="date">-</div>
+    </div>
+
+    <!-- STATS -->
+    <div class="card">
+      <h2>📊 Statistiques</h2>
+
+      <p class="info">Produits achetés :</p>
+      <div class="stat" id="purchasesCount">0</div>
+
+      <p class="info">Favoris :</p>
+      <div class="stat" id="wishlistCount">0</div>
+
+      <p class="info">Status :</p>
+      <div class="stat" style="color:var(--green)">Actif</div>
+    </div>
+
+    <!-- WISHLIST -->
+    <div class="card">
+      <h2>❤️ Wishlist</h2>
+      <ul id="wishlist"></ul>
+    </div>
+
+    <!-- PURCHASES -->
+    <div class="card">
+      <h2>🛒 Achats</h2>
+      <ul id="purchases"></ul>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("userSession"));
+  const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+  const purchases = JSON.parse(localStorage.getItem("orders") || "[]");
+
+  if(!user){
+    window.location.href="login.html";
+  }
+
+  // USER INFO
+  document.getElementById("name").innerText = user.name;
+  document.getElementById("email").innerText = user.email;
+  document.getElementById("type").innerText = user.type;
+  document.getElementById("date").innerText = user.createdAt || "Inconnu";
+
+  // STATS
+  document.getElementById("wishlistCount").innerText = wishlist.length;
+  document.getElementById("purchasesCount").innerText = purchases.length;
+
+  // WISHLIST
+  const w = document.getElementById("wishlist");
+  wishlist.forEach(item=>{
+    const li = document.createElement("li");
+    li.textContent = "❤️ " + item;
+    w.appendChild(li);
+  });
+
+  if(wishlist.length === 0){
+    w.innerHTML = "<li>Aucun favori</li>";
+  }
+
+  // PURCHASES
+  const p = document.getElementById("purchases");
+  purchases.forEach(order=>{
+    const li = document.createElement("li");
+    li.textContent = "🛒 " + order.product + " - " + order.price;
+    p.appendChild(li);
+  });
+
+  if(purchases.length === 0){
+    p.innerHTML = "<li>Aucun achat</li>";
+  }
+
+  function logout(){
+    localStorage.removeItem("userSession");
+    window.location.href="login.html";
+  }
+
+  function goHome(){
+    window.location.href="index.html";
+  }
+</script>
+
+</body>
+</html>

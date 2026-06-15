@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÉDIT MARKET PRO - Catégories</title>
+
+  <style>
+    :root{
+      --bg:#05050A;
+      --violet:#8B5CF6;
+      --violet2:#A855F7;
+      --text:#FFFFFF;
+      --muted:#9CA3AF;
+      --card:rgba(17,24,39,0.6);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter,system-ui,sans-serif;
+    }
+
+    body{
+      background: radial-gradient(circle at top, #1a0b2e, var(--bg));
+      color:var(--text);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 25px;
+      background:rgba(5,5,10,0.7);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(139,92,246,0.2);
+      position:sticky;
+      top:0;
+    }
+
+    .logo{
+      color:var(--violet);
+      font-weight:bold;
+    }
+
+    .btn{
+      padding:10px 14px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--violet),var(--violet2));
+      color:white;
+      cursor:pointer;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:auto;
+      padding:30px 20px;
+    }
+
+    h1{
+      color:var(--violet2);
+      margin-bottom:20px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(139,92,246,0.2);
+      border-radius:18px;
+      padding:20px;
+      backdrop-filter:blur(20px);
+      transition:0.3s;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 0 25px rgba(139,92,246,0.3);
+    }
+
+    .icon{
+      font-size:30px;
+      margin-bottom:10px;
+    }
+
+    .title{
+      font-weight:bold;
+      margin-bottom:6px;
+    }
+
+    .desc{
+      color:var(--muted);
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">ÉDIT MARKET PRO</div>
+  <button class="btn" onclick="goHome()">Accueil</button>
+</nav>
+
+<div class="container">
+
+  <h1>📂 Catégories</h1>
+
+  <div class="grid">
+
+    <div class="card" onclick="openCategory('video')">
+      <div class="icon">🎬</div>
+      <div class="title">Montage Vidéo</div>
+      <div class="desc">After Effects, Premiere Pro, DaVinci</div>
+    </div>
+
+    <div class="card" onclick="openCategory('motion')">
+      <div class="icon">🎨</div>
+      <div class="title">Motion Design</div>
+      <div class="desc">Intros, logos, animations</div>
+    </div>
+
+    <div class="card" onclick="openCategory('luts')">
+      <div class="icon">🌈</div>
+      <div class="title">LUTs</div>
+      <div class="desc">Color grading cinéma</div>
+    </div>
+
+    <div class="card" onclick="openCategory('audio')">
+      <div class="icon">🔊</div>
+      <div class="title">Audio</div>
+      <div class="desc">SFX, musiques, ambiances</div>
+    </div>
+
+    <div class="card" onclick="openCategory('assets')">
+      <div class="icon">🎥</div>
+      <div class="title">Assets</div>
+      <div class="desc">VFX, overlays, b-roll</div>
+    </div>
+
+    <div class="card" onclick="openCategory('design')">
+      <div class="icon">🧩</div>
+      <div class="title">Design</div>
+      <div class="desc">PSD, mockups, branding</div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("userSession"));
+
+  if(!user){
+    window.location.href="login.html";
+  }
+
+  function openCategory(cat){
+    localStorage.setItem("selectedCategory", cat);
+    window.location.href="products.html";
+  }
+
+  function goHome(){
+    window.location.href="index.html";
+  }
+</script>
+
+</body>
+</html>

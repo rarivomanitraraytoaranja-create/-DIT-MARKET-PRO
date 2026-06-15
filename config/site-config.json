@@ -1,0 +1,21 @@
+{
+  "siteName": "ÉDIT MARKET PRO",
+  "version": "1.0.0",
+  "environment": "production",
+
+  "features": {
+    "googleLogin": true,
+    "localStorageMode": true,
+    "pwa": false
+  },
+
+  "database": {
+    "type": "json",
+    "path": "/data/"
+  },
+
+  "security": {
+    "authMode": "client-side",
+    "sessionExpiry": 86400
+  }
+}

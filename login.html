@@ -1,190 +1,22 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ÉDIT MARKET PRO - Login</title>
-
-  <style>
-    :root{
-      --bg:#05050A;
-      --violet:#8B5CF6;
-      --violet2:#A855F7;
-      --text:#FFFFFF;
-      --muted:#9CA3AF;
-      --card:rgba(17,24,39,0.6);
-    }
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Inter,system-ui,sans-serif;
-    }
-
-    body{
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background: radial-gradient(circle at top, #1a0b2e, var(--bg));
-      color:var(--text);
-    }
-
-    .card{
-      width:90%;
-      max-width:420px;
-      padding:30px;
-      border-radius:20px;
-      background:var(--card);
-      border:1px solid rgba(139,92,246,0.2);
-      backdrop-filter:blur(20px);
-      animation:fadeIn 0.8s ease;
-    }
-
-    h1{
-      text-align:center;
-      color:var(--violet2);
-      margin-bottom:20px;
-    }
-
-    input{
-      width:100%;
-      padding:12px;
-      margin:10px 0;
-      border-radius:12px;
-      border:1px solid rgba(139,92,246,0.3);
-      background:rgba(0,0,0,0.4);
-      color:white;
-      outline:none;
-    }
-
-    .btn{
-      width:100%;
-      padding:12px;
-      margin-top:10px;
-      border:none;
-      border-radius:12px;
-      background:linear-gradient(135deg,var(--violet),var(--violet2));
-      color:white;
-      cursor:pointer;
-      transition:0.3s;
-    }
-
-    .btn:hover{
-      transform:scale(1.03);
-    }
-
-    .google{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:10px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.1);
-    }
-
-    .google:hover{
-      box-shadow:0 0 20px rgba(139,92,246,0.3);
-    }
-
-    .divider{
-      text-align:center;
-      margin:15px 0;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .link{
-      text-align:center;
-      margin-top:15px;
-      font-size:13px;
-      color:var(--muted);
-      cursor:pointer;
-    }
-
-    .link:hover{
-      color:var(--violet2);
-    }
-
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateY(20px);}
-      to{opacity:1;transform:translateY(0);}
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <body>
 
-<div class="card">
+<div class="auth-box glass">
+  <h2>Connexion</h2>
 
-  <h1>Connexion</h1>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Mot de passe">
 
-  <!-- GOOGLE LOGIN (SIMULÉ) -->
-  <button class="btn google" onclick="googleLogin()">
-    🔵 Continuer avec Google
-  </button>
-
-  <div class="divider">ou</div>
-
-  <!-- EMAIL LOGIN -->
-  <input type="email" id="email" placeholder="Email"/>
-  <input type="password" id="password" placeholder="Mot de passe"/>
-
-  <button class="btn" onclick="login()">
-    Se connecter
-  </button>
-
-  <div class="link" onclick="goRegister()">
-    Pas de compte ? Créer un compte
-  </div>
-
+  <button onclick="login()">Se connecter</button>
 </div>
 
-<script>
-  // auto-login
-  const session = JSON.parse(localStorage.getItem("userSession"));
-  if(session){
-    window.location.href="index.html";
-  }
-
-  function login(){
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    if(!email || !password){
-      alert("Remplis tous les champs !");
-      return;
-    }
-
-    const user = {
-      email,
-      name: email.split("@")[0],
-      type:"email"
-    };
-
-    localStorage.setItem("userSession", JSON.stringify(user));
-
-    window.location.href="index.html";
-  }
-
-  function googleLogin(){
-    // simulation Google OAuth
-    const user = {
-      email:"googleuser@gmail.com",
-      name:"Google User",
-      type:"google"
-    };
-
-    localStorage.setItem("userSession", JSON.stringify(user));
-
-    window.location.href="index.html";
-  }
-
-  function goRegister(){
-    window.location.href="register.html";
-  }
-</script>
-
+<script src="assets/js/auth.js"></script>
 </body>
 </html>
